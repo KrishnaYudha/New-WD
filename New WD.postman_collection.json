@@ -1,0 +1,1324 @@
+{
+	"info": {
+		"_postman_id": "0ca3530e-e445-4f95-9ff6-f4841babe92a",
+		"name": "New WD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8717759",
+		"_collection_link": "https://universal-astronaut-135136.postman.co/workspace/My-Workspace~2795fb44-1e76-44c1-8185-a14ec59e4c73/collection/8717759-0ca3530e-e445-4f95-9ff6-f4841babe92a?action=share&source=collection_link&creator=8717759"
+	},
+	"item": [
+		{
+			"name": "1. Log-In",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"",
+							"pm.environment.set(\"KEY\", responseData.data.token);",
+							"pm.environment.set(\"REFRESH_TOKEN\", responseData.data.refresh_token);",
+							"pm.environment.set(\"current_phone_number\", responseData.data.current_phone_number);",
+							"pm.environment.set(\"gauth_enabled\", responseData.data.gauth_enabled);",
+							"",
+							"",
+							"",
+							"pm.test(\"Check Status = 200\", function () {",
+							"    pm.response.to.be.ok; // Ensure the response is received successfully",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData.code).to.equal(200, `Response code should be 200. Actual code: = ${responseData.code}.`);",
+							"});",
+							"",
+							"    pm.test(\"Check response success = True\", function () {",
+							"    pm.response.to.be.ok; ",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData.success).to.equal(true, `Response code should be true. Actual code: = ${responseData.success}.`);",
+							"});",
+							"",
+							"",
+							"pm.test(\"check Avaliable token\", function () {",
+							"    const responseData = pm.response.json();",
+							"    const token = responseData.data.token;",
+							"    console.log(\"Extracted Token:\", token);",
+							"        pm.expect(token).to.match(/^[a-zA-Z0-9]{64}$/, `,existing response = ${responseData.data.token}.`);",
+							"    });",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "is_mobile",
+						"type": "text",
+						"value": "{{MOBILE}}"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "browser_key",
+						"value": "{{BROWSER_KEY}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "key",
+						"value": "{{KEY}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "nonce",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "lang",
+						"value": "en",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "krishna@bitcoin.co.id",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Denpasar1234$",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/auth/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "1. Log-In",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "is_mobile",
+								"type": "text",
+								"value": "{{MOBILE}}"
+							},
+							{
+								"key": "device_id",
+								"value": "{{device_id}}",
+								"type": "text"
+							},
+							{
+								"key": "device_info",
+								"value": "{{device_info}}",
+								"type": "text"
+							},
+							{
+								"key": "browser_key",
+								"value": "{{BROWSER_KEY}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "key",
+								"value": "{{KEY}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "nonce",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "lang",
+								"value": "en",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "krishna@bitcoin.co.id",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Denpasar1234$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 07:01:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "INDODAX"
+						},
+						{
+							"key": "v",
+							"value": "2"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "redis_host=10.135.255.180; expires=Wed, 12-Mar-2025 07:01:20 GMT; Max-Age=31536000; path=/; secure"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "redis_host=10.135.255.180; expires=Wed, 12-Mar-2025 07:01:20 GMT; Max-Age=31536000; path=/; secure"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "redis_host=10.135.255.180; expires=Wed, 12-Mar-2025 07:01:20 GMT; Max-Age=31536000; path=/; secure"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "btcid=a%3A0%3A%7B%7D; expires=Mon, 13-Mar-2023 17:01:20 GMT; Max-Age=0; path=/; domain=d-idx.com; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "btcid=47ad5ee0bab99aa5035e516b67113acb; expires=Tue, 12-Mar-2024 19:01:20 GMT; Max-Age=43200; path=/; domain=d-idx.com; HttpOnly"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Access-Control-Request-Headers, Access-Control-Request-Method, Origin, X-Requested-With, Content-Type, Accept, Authorization, Key, is_mobile, browser_key, lang, is_salespage, access-control-allow-origin, Access-Control-Allow-Credentials, Cookie, Set-Cookie, Location"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, OPTIONS, PUT, DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "PA-SG"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 google"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8631e9956e804906-SIN"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"error_credential\": false,\n    \"message\": \"Login Success\",\n    \"data\": {\n        \"pin_enabled\": true,\n        \"gauth_enabled\": false,\n        \"need_verify_2fa\": true,\n        \"is_account_verified\": 1,\n        \"is_phone_number_verified\": 1,\n        \"current_phone_number\": \"+6287861354072\",\n        \"isProcessDelete\": false,\n        \"is_biometric_enabled\": false,\n        \"token\": \"569ed3bc94a19118cce12aac6abfd1e08c15a1647a51e403c42a322039f1b147\",\n        \"refresh_token\": \"60fb5c4dc72aa7cbe4f53e3a10ba4251f6668b1ed37b3f32295c42a56142e4ac\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "2. Verify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{{KEY}}"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "lang",
+						"value": "id",
+						"type": "text"
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "nonce",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pin",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "sms_pin",
+							"value": "606345",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "gauth_pin",
+							"value": "553049",
+							"type": "text"
+						},
+						{
+							"key": "call_pin",
+							"value": "5096",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "signed_data",
+							"value": "MEUCIGzIuoPKVhZX52f9oTOQ6f7Uil4lDuvV31rjOqWQci1OAiEA%2Fob2asZYoaZC2AybxA4hN62Br1kHx4UH1elwa4v7chM%3D",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/auth/pin/verify",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"pin",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Biometric Challenge",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{{KEY}}"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "lang",
+						"value": "id",
+						"type": "text"
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "nonce",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "type",
+							"value": "withdraw_rp",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/auth/pin/verify",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"pin",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Rupiah Get Detail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"const withdraw_amount_received = responseData.data.withdraw_amount_received;",
+							"const gauthEnabled = pm.environment.get(\"gauth_enabled\");",
+							"",
+							"    pm.test(\"Verify Check response Status Code 200\", function () {",
+							"        const responseData = pm.response.json();",
+							"        pm.expect(responseData.code).to.equal(200, `Response code should be 200. Actual code: ${responseData.code}.`);",
+							"",
+							"    });",
+							"",
+							"pm.test(\"Verify Existing data\", function () {",
+							"    pm.expect(responseData.data.withdraw_amount).to.exist;",
+							"    pm.expect(responseData.data.withdraw_account).to.exist;",
+							"    pm.expect(responseData.data.service_fee).to.exist;",
+							"    pm.expect(responseData.data.sms_fee).to.exist;",
+							"    pm.expect(responseData.data.withdraw_amount_received).to.exist;",
+							"    ",
+							"});",
+							"",
+							"pm.test(\"Verify response data valid Output\", function () {",
+							"    pm.expect(responseData.data.withdraw_amount).to.be.above(99999, \"withdraw_amount should be above 99999.\");",
+							"    pm.expect(responseData.data.withdraw_amount).to.be.a(\"number\", \"withdraw_amount should be a number\");",
+							"     pm.expect(responseData.data.withdraw_amount).to.not.be.below(0, \"withdraw_amount should not be negative.\");",
+							"     pm.expect(responseData.data.withdraw_amount).to.be.a(\"number\", \"withdraw_amount should be a number\");",
+							"    pm.expect(responseData.data.withdraw_account).to.be.a(\"string\", \"withdraw_account should be a string.\");",
+							"    pm.expect(responseData.data.service_fee).to.equal(-12500, \"service_fee should be equal to -12500.\");",
+							"    pm.expect(responseData.data.service_fee).to.be.a(\"number\", \"service_fee should be a number.\");",
+							"    pm.expect(responseData.data.sms_fee).to.be.a(\"number\", \"sms_fee should be a number.\");",
+							"    pm.expect(responseData.data.withdraw_amount_received).to.be.a(\"number\", \"withdraw_amount_received should be a number.\");",
+							"});",
+							"",
+							"pm.test(`Gauth enabled = ${pm.environment.get(\"gauth_enabled\")}, SMS Fee = ${responseData.data.sms_fee}`, function () {",
+							"    if (gauthEnabled === false) {",
+							"        pm.expect(responseData.data.sms_fee).to.equal(-1000, `sms_fee should be -1000 when gauth_enabled is false. SMS Fee = ${responseData.data.sms_fee}`);",
+							"    } else if (gauthEnabled === true) {",
+							"        pm.expect(responseData.data.sms_fee).to.equal(0, `sms_fee should be 0 when gauth_enabled is true. SMS Fee = ${responseData.data.sms_fee}`);",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Verify Withdraw Calculation\", function () {",
+							"    let expectedWithdrawAmountReceived = responseData.data.withdraw_amount + responseData.data.service_fee + responseData.data.sms_fee;",
+							"    pm.expect(expectedWithdrawAmountReceived).to.equal(responseData.data.withdraw_amount_received, `withdraw_amount_received should be ${withdraw_amount_received} value expected ${expectedWithdrawAmountReceived}`);",
+							"    console.log(\"test\",expectedWithdrawAmountReceived);",
+							"    ",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{{KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}",
+						"type": "text"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "browser_key",
+						"value": "{{BROWSER_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "indodax-android-app",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "withdraw_amount",
+							"value": "100000",
+							"type": "text"
+						},
+						{
+							"key": "withdraw_account_id",
+							"value": "8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/withdraw/new-get-withdraw-confirmation",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"withdraw",
+						"new-get-withdraw-confirmation"
+					]
+				},
+				"description": "\nThis endpoint makes an HTTP POST request to {{URL}}/withdraw/new-get-withdraw-confirmation in order to retrieve withdrawal confirmation details. The request uses form-data as the body type.\n\nThe response to the last execution of this request resulted in a status code of 200, with a JSON body containing the following fields:\n- \"success\": a boolean indicating the success status of the request\n- \"code\": an integer representing a specific code related to the request\n- \"error_credential\": a boolean indicating the presence of any credential-related error\n- \"message\": a string providing additional information about the request\n- \"data\": an object containing the withdrawal confirmation details\n\nNo specific payload was provided in the last call to this request.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Send General OTP With Auth Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"const responseData = pm.response.json();",
+							"",
+							"",
+							"pm.test(\"Verify success=true\", function () {",
+							"    pm.expect(responseData.success).to.equal(true, `Response code should be true. Actual code: ${responseData.success}.`);",
+							"});",
+							"",
+							"pm.test(\"Verify Check response Data Code 200\", function () {",
+							"  pm.expect(responseData.code).to.equal(200, \"Response success harus 200.\");",
+							"   if (responseData.code !== 200) {",
+							"        pm.test(\"Response code is not 200\", function () {",
+							"            pm.test(`Response code is not 200. Actual code: ${responseData.code}`);",
+							"        });",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"error credential = false \", function () {",
+							"    pm.expect(responseData.error_credential).to.equal(false, `Response code should be false. Actual code: ${responseData.error_credential}.`);",
+							"});",
+							"",
+							"pm.test(\"Check message success\", function () {",
+							"pm.expect(responseData.message).to.equal(\"Success\", \"Response success harus Sucess.\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}",
+						"type": "text"
+					},
+					{
+						"key": "key",
+						"value": "{{KEY}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "type",
+							"value": "email",
+							"description": "type nya ada sms & email khusus wd_rupiah",
+							"type": "text"
+						},
+						{
+							"key": "2fa_type",
+							"value": "withdraw_rupiah",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/otp/send-otp",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"otp",
+						"send-otp"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "\"withdraw_rupiah\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Rupiah",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"",
+							"pm.test(\"Verify Check response Status Code 200\", function () {",
+							"    pm.expect(responseData.code).to.equal(200, `Response code should be 200. Actual code: ${responseData.code}.`);",
+							"});",
+							"pm.test(\"Verify success=true\", function () {",
+							"    pm.expect(responseData.success).to.equal(true, `Response code should be true. Actual code: ${responseData.success}.`);",
+							"});",
+							"pm.test(\"error credential = false \", function () {",
+							"    pm.expect(responseData.error_credential).to.equal(false, `Response code should be false. Actual code: ${responseData.error_credential}.`);",
+							"});",
+							"",
+							"pm.test(\"Verify Existing data\", function () {",
+							"    pm.expect(responseData.success).to.exist;",
+							"    pm.expect(responseData.code).to.exist;",
+							"    pm.expect(responseData.error_credential).to.exist;",
+							"    pm.expect(responseData.message).to.exist;",
+							"    pm.expect(responseData.data.transaction_id).to.exist;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{{KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}",
+						"type": "text"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "browser_key",
+						"value": "{{BROWSER_KEY}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "indodax-android-app",
+						"type": "text"
+					},
+					{
+						"key": "nonce",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "withdraw_amount",
+							"value": "100000",
+							"description": "new, id withdrawal account",
+							"type": "text"
+						},
+						{
+							"key": "withdraw_account_id",
+							"value": "498",
+							"type": "text"
+						},
+						{
+							"key": "pin",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "gauth_pin",
+							"value": "568277",
+							"description": "diisi saat gauth akun nya nyala",
+							"type": "text"
+						},
+						{
+							"key": "email_pin",
+							"value": "34B8MS",
+							"description": "wajib diisi",
+							"type": "text"
+						},
+						{
+							"key": "sms_pin",
+							"value": "184807",
+							"description": "diisi ketika gauth nya tidak aktif / sudah ada biometrics",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "signed_data",
+							"value": "MEYCIQDVQuoTzwQy6LLvI%2BGjlerAFLpPYa%2BNatGWa%2BHlsYTLPAIhAJ5lFOG0Dbvh5%2FgWZiHj7FJ3tKWmxsY0RwlKWui89of2",
+							"description": "diisi saat ada biometircs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/withdraw/new-rupiah",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"withdraw",
+						"new-rupiah"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Rupiah (Negative Case)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"//const is_biometric_enabled = pm.environment.get(\"is_biometric_enabled\"); ",
+							"const errorTypes = responseData.data.error_type || [];",
+							"const generalErrOtpExists = errorTypes.some(error => error.type === \"sms_otp\");",
+							"const gauthEnabled = pm.environment.get(\"gauth_enabled\");",
+							"",
+							"pm.test(\"Verify Check response Status Code 422\", function () {",
+							"    pm.expect(responseData.code).to.equal(422, `Response code should be 200. Actual code: ${responseData.code}.`);",
+							"});",
+							"pm.test(\"Verify success=false\", function () {",
+							"    pm.expect(responseData.success).to.equal(false, `Response code should be true. Actual code: ${responseData.success}.`);",
+							" });",
+							"pm.test(\"error credential = false \", function () {",
+							"    pm.expect(responseData.error_credential).to.equal(false, `Response code should be false. Actual code: ${responseData.error_credential}.`);",
+							"});",
+							"",
+							"pm.test(\"Verify Existing data\", function () {",
+							"    pm.expect(responseData.success).to.exist;",
+							"    pm.expect(responseData.code).to.exist;",
+							"    pm.expect(responseData.error_credential).to.exist;",
+							"    pm.expect(responseData.message).to.exist;",
+							"    pm.expect(responseData.data.error_type).to.exist;",
+							"});",
+							"",
+							"if (gauthEnabled !== true) {",
+							"    pm.test.skip(\"Skipping test for gauth disabled\");",
+							"    } else {",
+							"    pm.test(\"Error gauth Code is exist\", function () {",
+							"        const generalErrOtpExists = errorTypes.some(error => error.type === \"gauth_otp\");",
+							"        pm.expect(generalErrOtpExists).to.equal(true);",
+							"    });",
+							"}",
+							"pm.test(\"Error Email Code is exist\", function () {",
+							"        const generalErrOtpExists = errorTypes.some(error => error.type === \"email_otp\");",
+							"        pm.expect(generalErrOtpExists).to.equal(true);",
+							"});",
+							"",
+							"if (gauthEnabled == true) {",
+							"    pm.test.skip(\"Skipping test for gauth Enabled\");",
+							"    } else {",
+							"pm.test(\" sms_otp error is exist\", function () {",
+							"        const generalErrOtpExists = errorTypes.some(error => error.type === \"sms_otp\");",
+							"        pm.expect(generalErrOtpExists).to.equal(true);",
+							"});",
+							"    }"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{{KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}",
+						"type": "text"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "browser_key",
+						"value": "{{BROWSER_KEY}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "indodax-ios-app",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "withdraw_amount",
+							"value": "100000",
+							"description": "new, id withdrawal account",
+							"type": "text"
+						},
+						{
+							"key": "withdraw_account_id",
+							"value": "498",
+							"type": "text"
+						},
+						{
+							"key": "pin",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "gauth_pin",
+							"value": "751222",
+							"description": "diisi saat gauth akun nya nyala",
+							"type": "text"
+						},
+						{
+							"key": "email_pin",
+							"value": "B7XZSM",
+							"description": "wajib diisi",
+							"type": "text"
+						},
+						{
+							"key": "sms_pin",
+							"value": "184807",
+							"description": "diisi ketika gauth nya tidak aktif / sudah ada biometrics",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "signed_data",
+							"value": "MEUCIQD5IuPhZb6B13drHwaLElO39ZndCxAzULunEfFlb9y6vgIgNOF0DfCJ5r05wq1wXlFOOoRrvaowNnfZn%2B5f8Tqk9aQ%3D",
+							"description": "diisi saat ada biometircs",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/withdraw/new-rupiah",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"withdraw",
+						"new-rupiah"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "key",
+						"value": "{{KEY}}"
+					},
+					{
+						"key": "is_mobile",
+						"value": "{{MOBILE}}"
+					},
+					{
+						"key": "browser_key",
+						"value": "{{BROWSER_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "device_id",
+						"value": "{{device_id}}",
+						"type": "text"
+					},
+					{
+						"key": "device_info",
+						"value": "{{device_info}}",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "indodax-ios-app",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "hp",
+							"value": "081219344136",
+							"description": "1 => primary, 2 => alternative",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/send-otp",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"send-otp"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Send OTP",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "key",
+								"value": "{{KEY}}"
+							},
+							{
+								"key": "is_mobile",
+								"value": "{{MOBILE}}"
+							},
+							{
+								"key": "browser_key",
+								"value": "{{BROWSER_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "device_id",
+								"value": "{{device_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hp",
+									"value": "081293376634",
+									"description": "1 => primary, 2 => alternative",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/send-otp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"send-otp"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 08 Sep 2022 10:05:56 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "INDODAX"
+						},
+						{
+							"key": "v",
+							"value": "2"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Access-Control-Request-Headers, Access-Control-Request-Method, Origin, X-Requested-With, Content-Type, Accept, Authorization, Key, is_mobile, browser_key, lang, is_salespage, access-control-allow-origin, Access-Control-Allow-Credentials, Cookie, Set-Cookie"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, OPTIONS, PUT, DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "PA-SG"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=b%2FmqOu2Qfy4OLG5zchgv1F5jw6I1MTOZgj%2Fsb0qGvEvYgpmFAw4M8LrLGMPCTfM9Z64Sush%2B182ZrHpvRR3h4loTD2p%2BiHkXwQepCripUgvHj%2FV6Qezqb54BdwvT9fPHN0YnHV4%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains; preload"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "7476de5c2b66ddb9-HKG"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"error_credential\": false,\n    \"message\": \"We've sent an SMS with verification PIN to 628XXXXXXX852. Enter the PIN below\",\n    \"data\": {}\n}"
+				},
+				{
+					"name": "Send OTP try again",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "key",
+								"value": "{{KEY}}"
+							},
+							{
+								"key": "is_mobile",
+								"value": "{{MOBILE}}"
+							},
+							{
+								"key": "browser_key",
+								"value": "{{BROWSER_KEY}}",
+								"type": "text"
+							},
+							{
+								"key": "device_id",
+								"value": "{{device_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hp",
+									"value": "081293376634",
+									"description": "1 => primary, 2 => alternative",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/send-otp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"send-otp"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 08 Sep 2022 10:06:22 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "INDODAX"
+						},
+						{
+							"key": "v",
+							"value": "2"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Access-Control-Request-Headers, Access-Control-Request-Method, Origin, X-Requested-With, Content-Type, Accept, Authorization, Key, is_mobile, browser_key, lang, is_salespage, access-control-allow-origin, Access-Control-Allow-Credentials, Cookie, Set-Cookie"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, OPTIONS, PUT, DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "X-Served-By",
+							"value": "PA-SG"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=%2B2LIv5czi%2BGXIFsVCgMUwkGlZ2pdNyheIQbtF6tItG5flGWe5MzpUOFXxgRCGzyUjWxo5dyTrOJmsnSmHIZFZ%2FObYQCok%2Bsn%2FCdma29NRv30rYSWcSbe9Al%2BkaZnUD9K7SVulxA%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "NEL",
+							"value": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains; preload"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "7476defb0cf9ddb9-HKG"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"code\": 422,\n    \"error_credential\": false,\n    \"message\": \"You have requested SMS/Operator Call five times in a row. Please try again 15 minutes later.\",\n    \"data\": {}\n}"
+				}
+			]
+		}
+	]
+}
